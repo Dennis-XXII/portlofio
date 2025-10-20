@@ -4,11 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
 
 :root{
-  --bg: #F5F0E8;
-  --ink: #4F4A45;
-  --ink-2: #6a5f57;
-  --brand: #3F2305;      
-  --brand-2: #DFD7BF;
+  --bg: #FAFAFA;
+  --ink: #8b6b77;
+  --ink-2: #ae6e86;
+  --button-bg: #efe6dd;
+  --brand: #980139;      
+  --brand-2: #a86b81;
   --accent: #4CAF50;
   --nav-h: 68px;
   --max-w: 1120px;
@@ -35,13 +36,14 @@ body{
   max-width:var(--max-w);
   padding:20px;
   margin-inline: auto;
+  margin-top:none;
   align-self:center;
   align-items:center;
 }
 
 .section{
-  padding:60px;
-  scroll-margin-top:calc(var(--nav-h) + 18px);
+  padding:40px;
+  scroll-margin-top:calc(var(--nav-h)+20px);
   border-bottom:1px solid var(--brand-2);
   align-items:center;
 }
@@ -55,7 +57,7 @@ body{
    ✍️ Typography
 -----------------------------------------------------------*/
 .h1{ font-size:clamp(36px,4vw,56px); font-weight:600; color:var(--brand);}
-.h2{ font-size:clamp(28px,3vw,40px); font-weight:600; color:var(--brand);}
+.h2{ font-size:clamp(36px,3vw,48px); font-weight:600; color:var(--brand); margin-bottom: 24px;}
 .h3{ font-size:clamp(20px,2vw,24px); font-weight:600; color:var(--brand); }
 
 /* ----------------------------------------------------------
@@ -91,16 +93,46 @@ body{
 .badge{ display:inline-flex; align-items:center; gap:8px;
   padding:6px 10px; border-radius:999px; background:#E8F5E9; color:#2e7d32; font-size:14px;
 }
-.badge__dot{ width:8px; height:8px; background:var(--accent); border-radius:999px; box-shadow:0 0 0 3px rgba(76,175,80,.25); }
 
-.nav__links{ display:flex; gap:10px; align-items:center;
-  padding:6px; border-radius:999px; background:#efe6dd;
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+    transform: scale(1.2);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    transform: scale(1);
+  }
+}
+
+.badge__dot{ width:8px; height:8px; background:var(--accent); border-radius:999px; box-shadow:0 0 0 3px rgba(76,175,80,.25); animation:pulseGlow 2s infinite; }
+
+.nav__links{ position:relative; display:flex; gap:10px; align-items:center;
+  padding:6px; border-radius:999px; background:var(--button-bg);
 }
 .nav__btn{
-  padding:10px 16px; border-radius:999px; color:var(--brand);
-  text-decoration:none; font-weight:600; transition:all .2s ease;
+  position:relative; padding:8px 12px; border-radius:999px; color:var(--brand);
+  text-decoration:none; font-weight:600; transition:all .2s ease; isolation: isolate;
 }
-.nav__btn.is-active{ background:var(--brand); color:#fff; }
+
+.nav__label{
+  position:relative;
+  z-index:2;
+}
+
+.nav__pill{
+  position: absolute;
+  z-index: 1;
+  inset: -4px -8px;       /* slightly larger than button padding */
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+.nav__btn.is-active{ background:transparent; color:#fff; }
 
 /* ----------------------------------------------------------
    🧩 Layout Grids
@@ -117,7 +149,8 @@ body{
 -----------------------------------------------------------*/
 .square{
   width:100%; aspect-ratio:1/1;
-  background:#e2d8cf;
+  max-width: 240px;
+  background: var(--button-bg);
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow-md);
   overflow:hidden;
@@ -150,8 +183,7 @@ body{
 
 /* 🔮 Dolly zoom effect on hover */
 .circle-img:hover img {
-  transform: scale(1.2) translateZ(30px);
-  filter: brightness(1.05);
+  transform: scale(1.005);
 }
 
 /* optional subtle shadow pulse when hovered */
@@ -165,7 +197,7 @@ body{
 -----------------------------------------------------------*/
 .ul{ padding-left:20px; }
 .kv{
-  display:flex; align-items:baseline; gap:12px; justify-content:space-between;
+  display:flex; align-items:baseline; gap:8px; justify-content:space-between;
   border-bottom:1px solid var(--brand-2); padding:16px 0;
 }
 
@@ -202,33 +234,45 @@ body{
 .scroll-text{ font-weight:500; color:var(--brand); font-size:16px; text-align:center; }
 .scroll-down{
   width:52px; height:52px; border-radius:999px; border:none;
-  background:var(--brand); color:#fff; box-shadow:var(--shadow-md);
+  background:var(--brand); color:var(--bg); box-shadow:var(--shadow-md);
   display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
   transition:filter .2s ease;
 }
 .scroll-down:hover{ filter:brightness(0.95); }
 
 /* ----------------------------------------------------------
-   🌀 Carousel Animation (No Restart on Hover)
+   🌀 Infinite Image Carousel
 -----------------------------------------------------------*/
-
-.carousel-container {
+/* outer lets vertical overflow show */
+.carousel-outer{
   position: relative;
-  
   width: 100%;
+  overflow: visible;      /* allow hover scale/shadow to escape vertically */
   margin-top: 24px;
 }
 
-.carousel-track {
-  display: flex;
-  gap: 12px;
-  animation: scrollTrack 6s linear infinite;
-  animation-play-state: running;
+/* inner clips horizontally only (we’ll add vertical padding so lifts aren't cut) */
+.carousel-viewport{
+  overflow: hidden;       /* clips left/right overflow */
+  width: 100%;
+  padding-block: 20px;    /* room for hover lift/shadow */
 }
 
-@keyframes scrollTrack {
-  0% { transform: translateX(-15%); }
-  100% { transform: translateX(-50%); }
+.carousel-viewport:hover .carousel-track { animation-play-state: paused; }
+
+.carousel-track {
+  display: flex;
+  gap: 8px;
+  animation: scrollInfinite 20s linear infinite;
+}
+
+@keyframes scrollInfinite {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .carousel-item {
@@ -241,15 +285,15 @@ body{
 
 .carousel-img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 5px;
+  box-shadow: var(--shadow-md);
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.carousel-item:hover .carousel-img {
-  transform: scale(1.005);
+.carousel-item:hover .carousel-img .carousel-caption {
   filter: brightness(1.005);
+  scale: 1.1;
 }
 
 .carousel-caption {
@@ -259,7 +303,7 @@ body{
   font-weight: 500;
 }
 
-/* hover description bar */
+/* Description bar */
 .carousel-description-bar {
   height: 40px;
   margin-top: 16px;
@@ -272,8 +316,8 @@ body{
 }
 
 .carousel-description-bar p {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--brand);
   text-align: center;
   margin: 0;
@@ -285,15 +329,16 @@ body{
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* responsive */
+/* Utility class to pause carousel animation */
+.carousel-track.is-paused { animation-play-state: paused; }
+
+/* Mobile tweaks */
 @media (max-width: 768px) {
-  .carousel-item { width: 120px; }
-  .carousel-container { overflow-x: none; }
+  .carousel-item { width: 140px; }
 }
 
 @media (max-width: 480px) {
-  .carousel-item { width: 100px; }
-  .carousel-description-bar { height: 36px; font-size: 14px; }
+  .carousel-item { width: 110px; }
 }
 
 
@@ -316,8 +361,8 @@ body{
 /* 📘 Up to 768px – text scaling and section padding */
 @media (max-width:768px){
   .section{ padding:48px 24px; }
-  .h1{ font-size:clamp(24px,6vw,42px); }
-  .h2{ font-size:clamp(20px,5vw,32px); }
+  .h1{ font-size:clamp(30px,6vw,56px); }
+  .h2{ font-size:clamp(28px,5vw,36px); }
   .carousel-item{ width:160px; }
   .text_box{ margin-left:10px; }
   .badge{ font-size:8px; padding:4px 8px; }
@@ -327,7 +372,7 @@ body{
 /* 📗 Up to 600px – tighten spacing, smaller icons, center align */
 @media (max-width:600px){
   .container{flex: auto; padding:16px; flex-direction:column;align-items:center; }
-  .media{ grid-template-columns:1fr; justify-items: center;}
+  .media{ grid-template-columns:1fr; justify-items: center; text-align: start;}
   .media_home{display:flex; flex-direction: column; text-align: center; align-items: center; justify-items: center;}
 
   .section{ padding:40px 20px; }

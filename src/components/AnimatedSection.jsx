@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
  */
 export default function AnimatedSection({ as = "div", children, delay = 0, className = "" }) {
   const controls = useAnimation();
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   useEffect(() => {
     if (inView) controls.start("visible");

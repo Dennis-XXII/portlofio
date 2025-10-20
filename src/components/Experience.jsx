@@ -17,11 +17,13 @@ export default function Experience({ setActive }) {
           {experiences.map((exp, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
               <div className="media">
-                <div className="square" aria-label={exp.imgAlt} />
+                <img src={exp.image} alt={exp.imgAlt} className="square" />
                 <div>
+                <div className="kv" style={{borderBottom:"none"}}>
                   <h3 className="h3">{exp.title} </h3>
-                  <h3> <span style={{fontWeight:400}}>({exp.role})</span></h3>
                   <div style={{textAlign:"left", color:"var(--ink-2)"}}>{exp.years}</div>
+                </div>
+                <span style={{fontWeight:400}}>({exp.role})</span>
                   <p style={{marginTop:10}}>{exp.description}</p>
                 </div>
               </div>

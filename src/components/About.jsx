@@ -1,7 +1,7 @@
 import AnimatedSection from "./AnimatedSection";
 import { skills, languages } from "../data";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 import hobby1 from "/hobby1.jpg";
@@ -11,21 +11,27 @@ import hobby4 from "/hobby4.jpg";
 
 export default function About({ setActive }) {
   const { ref, inView } = useInView({ threshold: 0.35 });
-  const controls = useAnimation();
   const [hoveredCaption, setHoveredCaption] = useState("");
+
+  const trackRef = useRef(null);
+
+  const pauseTrack = () => {
+    if (trackRef.current) trackRef.current.style.animationPlayState = "paused";
+  };
+  const resumeTrack = () => {
+    if (trackRef.current) trackRef.current.style.animationPlayState = "running";
+  };
 
   useEffect(() => {
     if (inView) setActive("about");
   }, [inView, setActive]);
 
   const hobbies = [
-    { img: hobby1, caption: "Photography", desc: "Capturing moments with light and emotion." },
-    { img: hobby2, caption: "Cooking", desc: "Experimenting with flavors and plating aesthetics." },
-    { img: hobby3, caption: "Gaming", desc: "Immersed in worlds of strategy and creativity." },
-    { img: hobby4, caption: "Travel", desc: "Exploring cultures, architecture, and hidden gems." },
+    { img: hobby1, caption: "Table Tennis", desc: "I got bronze in Rangsit University Payom Games 2023." },
+    { img: hobby2, caption: "Table Tennis", desc: "In the following year, 2025. I got Gold." },
+    { img: hobby3, caption: "Travelling", desc: "I also love to travel to various places around me." },
+    { img: hobby4, caption: "Khao Yai", desc: "A special place for me with many memories." },
   ];
-
-  const extended = [...hobbies, ...hobbies, ...hobbies];
 
   return (
     <section id="about" ref={ref} className="section">
@@ -37,36 +43,44 @@ export default function About({ setActive }) {
         <AnimatedSection>
           <h3 className="h3">Education</h3>
           <div className="kv">
-            <div>High School – B.E.H.S (Blah Blah)</div>
-            <div>(2016 – 2020)</div>
+            <div>
+            <span>High School – B.E.H.S (Blah Blah)</span>
+            <p>Remark:</p>
           </div>
-          <div style={{ margin: "8px 0 24px" }}>Remark:</div>
+          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
+          </div>
 
           <div className="kv">
-            <div>Bachelor of International Business – Rangsit University</div>
-            <div>(2022 – 2025)</div>
+            <div>
+            <span>High School – B.E.H.S (Blah Blah)</span>
+            <p>Remark:</p>
           </div>
-          <div style={{ margin: "8px 0 24px" }}>Remark:</div>
+          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
+          </div>
         </AnimatedSection>
 
         {/* Achievements */}
         <AnimatedSection delay={0.05}>
-          <h3 className="h3" style={{ marginTop: 36 }}>Achievements</h3>
+          <h3 className="h3" style={{ marginTop: 100 }}>Achievements</h3>
           <div className="kv">
-            <div>High School – B.E.H.S (Blah Blah)</div>
-            <div>(2016 – 2020)</div>
+            <div>
+            <span>High School – B.E.H.S (Blah Blah)</span>
+            <p>Remark:</p>
           </div>
-          <div style={{ margin: "8px 0 24px" }}>Remark:</div>
+          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
+          </div>
 
           <div className="kv">
-            <div>Bachelor of International Business – Rangsit University</div>
-            <div>(2022 – 2025)</div>
+            <div>
+            <span>Bachelor of International Business – Rangsit University</span>
+            <p>Remark:</p>
           </div>
-          <div style={{ margin: "8px 0 24px" }}>Remark:</div>
+          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
+          </div>
         </AnimatedSection>
 
         {/* Skills + Languages */}
-        <div className="grid grid-2" style={{ marginTop: 36 }}>
+        <div className="grid grid-2" style={{ marginTop: 100 }}>
           <AnimatedSection>
             <h3 className="h3">Skills</h3>
             <ul className="ul">
@@ -82,28 +96,29 @@ export default function About({ setActive }) {
           </AnimatedSection>
         </div>
 
-        <AnimatedSection delay={0.12}>
-  <h3 className="h2" style={{ marginTop: 40 }}>Hobbies</h3>
+<AnimatedSection delay={0.12}>
+  <h3 className="h3" style={{ marginTop: 100 }}>Hobbies</h3>
 
-  <div className="carousel-container">
-    <div
-      className="carousel-track"
-      onMouseEnter={() => document.querySelector(".carousel-track").style.animationPlayState = "paused"}
-      onMouseLeave={() => document.querySelector(".carousel-track").style.animationPlayState = "running"}
-    >
-      {[...hobbies, ...hobbies, ...hobbies].map((hobby, i) => (
+  <div className="carousel-outer" onMouseEnter={pauseTrack} onMouseLeave={resumeTrack} onTouchStart={pauseTrack} onTouchEnd={resumeTrack}>
+    <div className="carousel-viewport">
+    <div className="carousel-track" ref={trackRef}>
+      {/* Duplicate content twice for seamless infinite scroll */}
+      {[...hobbies, ...hobbies].map((hobby, i) => (
         <motion.div
           key={i}
           className="carousel-item"
-          whileHover={{ scale: 1.05, y: -5 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          whileHover={{ scale: 1.005 }}
+          transition={{ type: "tween", stiffness: 400, damping: 15 }}
           onMouseEnter={() => setHoveredCaption(hobby.desc)}
           onMouseLeave={() => setHoveredCaption("")}
         >
-          <img src={hobby.img} alt={hobby.caption} className="carousel-img" />
+          <motion.img src={hobby.img} alt={hobby.caption} className="carousel-img"
+    whileHover={{ aspectRatio: "3/3.5" }}
+    transition={{ type: "tween", stiffness: 250, damping: 15 }}/>
           <p className="carousel-caption">{hobby.caption}</p>
         </motion.div>
       ))}
+    </div>
     </div>
 
     <div className="carousel-description-bar">
