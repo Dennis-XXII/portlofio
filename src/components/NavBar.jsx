@@ -128,7 +128,7 @@ export default function NavBar({ active }) {
 </div>
           
           {/* new - Hamburger Button for mobile */}
-          <motion.button onTap={{scale:0.9}} className="hamburger-btn" onClick={() => setIsOpen(true)} aria-label="Open menu">
+          <motion.button className="hamburger-btn" onClick={() => setIsOpen(true)} aria-label="Open menu">
             <HamburgerIcon />
           </motion.button>
         </div>

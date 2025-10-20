@@ -59,7 +59,7 @@ export default function Home({ setActive }) {
 
             <div style={{display:"flex", gap:28, marginTop:12, alignItems:"center", justifyContent:"center"}}>
               <motion.a whileTap={{ scale: 0.95 }} className="link" href="https://www.linkedin.com/in/khin-thiri-myat-73b53923a/" target="_blank" >LinkedIn</motion.a>
-              <motion.a whileTap={{ scale: 0.95 }} className="link" href="#" onClick={(e)=>e.preventDefault()}>Facebook</motion.a>
+              <motion.a whileTap={{ scale: 0.95 }} className="link" href="https://www.facebook.com/harmony.carol.5" target="_blank">Facebook</motion.a>
             </div>
           </AnimatedSection>
         </div>
