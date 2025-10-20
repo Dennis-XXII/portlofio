@@ -1,6 +1,6 @@
 // new - import useState, useEffect and framer-motion
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, scale } from "framer-motion";
 
 const LINKS = [
   { id: "home", label: "Home" },
@@ -95,31 +95,42 @@ export default function NavBar({ active }) {
       <nav className="nav">
         <div className="nav_box">
           <div className="brand">
-            <span>Khin Thiri Myat</span>
+            <h2>Khin Thiri Myat</h2>
             <span className="badge"><span className="badge__dot" />Open for work!</span>
           </div>
 
-          {/* This is the original desktop navigation */}
-          <div className="nav__links" role="tablist" aria-label="Sections">
-            {LINKS.map((link) => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={handleClick(link.id)}
-                className={`nav__btn ${active === link.id ? "is-active" : ""}`}
-                role="tab"
-                aria-selected={active === link.id}
-                aria-controls={link.id}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+          {/* Desktop navigation */}
+<div className="nav__links" role="tablist" aria-label="Sections">
+  {LINKS.map((link) => {
+    const isActive = active === link.id;
+    return (
+      <a
+        key={link.id}
+        href={`#${link.id}`}
+        onClick={handleClick(link.id)}
+        className={`nav__btn ${isActive ? "is-active" : ""}`}
+        role="tab"
+        aria-selected={isActive}
+        aria-controls={link.id}
+      >
+        {/* 👇 This shared-layout span animates between links */}
+        {isActive && (
+          <motion.span
+            layoutId="nav-active-pill"
+            className="nav__pill"
+            transition={{ type: "spring", stiffness: 500, damping: 40 }}
+          />
+        )}
+        <span className="nav__label">{link.label}</span>
+      </a>
+    );
+  })}
+</div>
           
           {/* new - Hamburger Button for mobile */}
-          <button className="hamburger-btn" onClick={() => setIsOpen(true)} aria-label="Open menu">
+          <motion.button onTap={{scale:0.9}} className="hamburger-btn" onClick={() => setIsOpen(true)} aria-label="Open menu">
             <HamburgerIcon />
-          </button>
+          </motion.button>
         </div>
       </nav>
 

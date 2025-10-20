@@ -25,6 +25,13 @@ export default function App() {
       <Projects setActive={setActiveMemo} />
       <About setActive={setActiveMemo} />
       <Contact setActive={setActiveMemo} />
+      <footer className="footer" style={{ textAlign:"center"}}>
+        <div className="container">
+          <p>
+            Built by a loved one using React + Framer Motion &nbsp;|&nbsp; © Khin Thiri Myat {new Date().getFullYear()}
+          </p>
+        </div>
+      </footer>
     </>
   );
 }

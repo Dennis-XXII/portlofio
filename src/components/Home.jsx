@@ -41,26 +41,25 @@ export default function Home({ setActive }) {
     whileHover={{ scale: 1.05 }}
     transition={{ type: "spring", stiffness: 180, damping: 12 }}
   >
-    <img src="/me.png" alt="profile picture" />
+    <img src="/me.jpeg" alt="profile picture" />
   </motion.div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1} className="text_box">
             <h1  className="h1" style={{fontWeight:"200"}}>
-              Hello, I’m <motion.span whileHover={{ letterSpacing: "2px"}}
+              Hello, I’m <motion.span whileHover={{ letterSpacing: "2px" }}
     transition={{ type: "spring", stiffness: 180, damping: 12 }}   style={{color:"var(--brand)", fontWeight:"600"}}>Khin Thiri Myat</motion.span>.
             </h1>
             <p>I am an aspiring Business Student who is seeking job opportunities.</p>
 
             <div style={{display:"flex", gap:12, margin:"12px 0 12px", justifyContent:"center" }}>
-              <a className="btn" href="#" onClick={(e)=>e.preventDefault()}>Download my CV</a>
-              <a className="btn btn--ghost" href="#contact">Contact me</a>
+              <motion.a whileTap={{ scale: 0.95 }} className="btn" href="#" onClick={(e)=>e.preventDefault()}>Download my CV</motion.a>
+              <motion.a whileTap={{ scale: 0.95 }} className="btn btn--ghost" href="#contact">Contact me</motion.a>
             </div>
 
             <div style={{display:"flex", gap:28, marginTop:12, alignItems:"center", justifyContent:"center"}}>
-              <a className="link" href="https://www.linkedin.com/in/khin-thiri-myat-73b53923a/" target="_blank" >LinkedIn</a>
-              <a className="link" href="https://www.instagram.com/carolkochittal/" target="_blank">Instagram</a>
-              <a className="link" href="#" onClick={(e)=>e.preventDefault()}>Facebook</a>
+              <motion.a whileTap={{ scale: 0.95 }} className="link" href="https://www.linkedin.com/in/khin-thiri-myat-73b53923a/" target="_blank" >LinkedIn</motion.a>
+              <motion.a whileTap={{ scale: 0.95 }} className="link" href="#" onClick={(e)=>e.preventDefault()}>Facebook</motion.a>
             </div>
           </AnimatedSection>
         </div>
@@ -72,7 +71,7 @@ export default function Home({ setActive }) {
         style={{ opacity: fadeOpacity, scale: fadeScale }}
       >
         <p className="scroll-text">This is just the tip of my iceberg. Let's scroll down!</p>
-        <motion.button
+        <motion.button whileTap={{ scale: 0.9 }}
           type="button"
           aria-label="Scroll to next section"
           className="scroll-down"

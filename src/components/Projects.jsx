@@ -17,16 +17,16 @@ export default function Projects({ setActive }) {
           {projects.map((p, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
               <div className="media">
-                <div className="square" aria-label={p.imgAlt} />
+                <img src="{p.img}" alt={p.imgAlt} className="square" />
                 <div>
                   <div className="kv">
                     <h3 className="h3" style={{margin:0}}>{p.title}</h3>
-                    <div style={{color:"var(--ink-2)"}}>({p.year})</div>
+                    <div style={{textAlign:"left", color:"var(--ink-2)"}}>({p.year})</div>
                   </div>
-                  <p>{p.brief}</p>
+                  <span>{p.brief}</span>
                   <p>{p.description}</p>
                 </div>
-              </div>
+                </div>
             </AnimatedSection>
           ))}
         </div>
