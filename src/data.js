@@ -59,3 +59,38 @@ export const languages = [
   "Chinese (Basic)",
   "Thai (Beginner)",
 ];
+
+export const education = [
+    {
+        institution: "Rangsit University",
+        degree: "Bachelor of International Business",
+        years: "2020 - Present",
+        remarks: "Relevant coursework: Marketing, Finance, Business Strategy."
+    },
+    {
+        institution: "B.E.H.S (Blah Blah)",
+        degree: "High School Diploma",
+        years: "2016 - 2020",
+        remarks: "Graduated with honors."
+    }
+];
+
+export const achievements = [
+    {
+        title: "Bronze Medal in Table Tennis",
+        year: "2023",
+        description: "Achieved bronze in Rangsit University Payom Games 2023."
+    },
+    {
+        title: "Gold Medal in Table Tennis",
+        year: "2025",
+        description: "Won gold in Rangsit University Payom Games 2025."
+    }
+]; 
+
+export const hobbies = [
+    { img: "/hobby1.jpg", caption: "Table Tennis", desc: "I got bronze in Rangsit University Payom Games 2023." },
+    { img: "/hobby2.jpeg", caption: "Table Tennis", desc: "In the following year, 2025. I got Gold." },
+    { img: "/hobby3.jpg", caption: "Travelling", desc: "I also love to travel to various places around me." },
+    { img: "/hobby4.jpg", caption: "Khao Yai", desc: "A special place for me with many memories." },
+  ];

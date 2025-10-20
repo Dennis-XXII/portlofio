@@ -1,13 +1,9 @@
 import AnimatedSection from "./AnimatedSection";
-import { skills, languages } from "../data";
+import { skills, languages, education, achievements} from "../data";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-
-import hobby1 from "/hobby1.jpg";
-import hobby2 from "/hobby2.jpg";
-import hobby3 from "/hobby3.jpg";
-import hobby4 from "/hobby4.jpg";
+import { hobbies } from "../data.js";
 
 export default function About({ setActive }) {
   const { ref, inView } = useInView({ threshold: 0.35 });
@@ -26,12 +22,6 @@ export default function About({ setActive }) {
     if (inView) setActive("about");
   }, [inView, setActive]);
 
-  const hobbies = [
-    { img: hobby1, caption: "Table Tennis", desc: "I got bronze in Rangsit University Payom Games 2023." },
-    { img: hobby2, caption: "Table Tennis", desc: "In the following year, 2025. I got Gold." },
-    { img: hobby3, caption: "Travelling", desc: "I also love to travel to various places around me." },
-    { img: hobby4, caption: "Khao Yai", desc: "A special place for me with many memories." },
-  ];
 
   return (
     <section id="about" ref={ref} className="section">
@@ -40,44 +30,32 @@ export default function About({ setActive }) {
         <h2 className="h2" style={{ marginBottom: 24 }}>About</h2>
 
         {/* Education */}
-        <AnimatedSection>
-          <h3 className="h3">Education</h3>
+        <h3 className="h3">Education</h3>
+        {education.map((edu, i) => (
+        <AnimatedSection key={i} delay={i*0.08}>
           <div className="kv">
             <div>
-            <span>High School – B.E.H.S (Blah Blah)</span>
-            <p>Remark:</p>
+            <p className="headerP">{edu.degree} – {edu.institution}</p>
+            <p >Remark: {edu.remarks}</p>
           </div>
-          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
-          </div>
-
-          <div className="kv">
-            <div>
-            <span>High School – B.E.H.S (Blah Blah)</span>
-            <p>Remark:</p>
-          </div>
-          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
+          <div>{edu.years}</div>
           </div>
         </AnimatedSection>
+        ))}
 
-        {/* Achievements */}
-        <AnimatedSection delay={0.05}>
-          <h3 className="h3" style={{ marginTop: 100 }}>Achievements</h3>
+        {/* achievements */}
+        <h3 className="h3" style={{marginTop:"100px"}}>Achievements</h3>
+        {achievements.map((ach, i) => (
+        <AnimatedSection key={i} delay={i*0.08}>
           <div className="kv">
             <div>
-            <span>High School – B.E.H.S (Blah Blah)</span>
-            <p>Remark:</p>
+            <p className="headerP">{ach.title}</p>
+            <p >{ach.description}</p>
           </div>
-          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
-          </div>
-
-          <div className="kv">
-            <div>
-            <span>Bachelor of International Business – Rangsit University</span>
-            <p>Remark:</p>
-          </div>
-          <div style={{ margin: "8px 0 24px" }}>(2016 – 2020)</div>
+          <div>{ach.year}</div>
           </div>
         </AnimatedSection>
+        ))}
 
         {/* Skills + Languages */}
         <div className="grid grid-2" style={{ marginTop: 100 }}>
