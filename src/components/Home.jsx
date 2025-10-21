@@ -32,6 +32,7 @@ export default function Home({ setActive }) {
       id="home"
       ref={(node) => { sectionRef.current = node; inViewRef(node); }}
       className="section section--fullscreen home-section"
+      style={{padding:"100px 0"}}
     >
       <div className="container">
         <div className="media_home">

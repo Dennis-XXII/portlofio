@@ -232,7 +232,7 @@ body{
 /* ----------------------------------------------------------
    ⬇️ Scroll Prompt
 -----------------------------------------------------------*/
-.home-section{ position: relative; }
+.home-section{ position: relative;}
 
 /* full-width fixed row, centered with flex  */
 .scroll-block{
