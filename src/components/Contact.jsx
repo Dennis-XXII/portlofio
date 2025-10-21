@@ -10,10 +10,10 @@ export default function Contact({ setActive }) {
   useEffect(() => { if (inView) setActive("contact"); }, [inView, setActive]);
 
   return (
-    <section id="contact" ref={ref} className="section section--fullscreen">
+    <section id="contact" className="section section--fullscreen">
       <div className="container">
         <AnimatedSection>
-          <h2 className="h2" style={{textAlign:"center"}}>Contact Me</h2>
+          <h2 className="h2"  ref={ref} style={{textAlign:"center"}}>Contact Me</h2>
           <div className="icons" style={{marginTop:22}}>
             <motion.a whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 180, damping: 12 }} className="icon-link" href="https://www.linkedin.com/in/khin-thiri-myat-73b53923a/" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="#980139"><path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05H9.28s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.39 0 4.18 1.56 4.18 4.89v6.21z"/></svg>
@@ -32,7 +32,7 @@ export default function Contact({ setActive }) {
               <span>Whatsapp</span>
             </motion.a>
           </div>
-          <p style={{textAlign:"center", marginTop:32, color:"var(--ink-2)"}}>Email: <a href="mailto:khinthiri.m65@rsu.ac.th" style={{color:"var(--brand)"}}>harmonycarol442@gmail.com</a></p>
+          <p style={{textAlign:"center", marginTop:32, color:"var(--ink-2)"}}>Email: <a href="mailto:khinthiri.m65@rsu.ac.th" style={{color:"var(--brand)"}}>carolharmony442@gmail.com</a></p>
           <p style={{textAlign:"center", marginTop:32, color:"var(--ink-2)"}}>Mobile: <span style={{ color:"var(--brand)"}}>(+66) 095-882-3298</span></p>
 
         </AnimatedSection>

@@ -24,10 +24,10 @@ export default function About({ setActive }) {
 
 
   return (
-    <section id="about" ref={ref} className="section">
+    <section id="about"  className="section">
       <div className="container">
         {/* subtle heading */}
-        <h2 className="h2" style={{ marginBottom: 24 }}>About</h2>
+        <h2 className="h2" ref={ref} style={{ marginBottom: 24 }}>About</h2>
 
         {/* Education */}
         <h3 className="h3">Education</h3>

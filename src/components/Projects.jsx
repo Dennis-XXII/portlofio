@@ -9,9 +9,9 @@ export default function Projects({ setActive }) {
   useEffect(() => { if (inView) setActive("projects"); }, [inView, setActive]);
 
   return (
-    <section id="projects" ref={ref} className="section">
+    <section id="projects" className="section">
       <div className="container">
-        <h2 className="h2">Projects</h2>
+        <h2 className="h2" ref={ref}>Projects</h2>
 
         <div className="stack-gap">
           {projects.map((p, i) => (

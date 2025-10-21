@@ -53,7 +53,9 @@ export default function Home({ setActive }) {
             <p>I am an aspiring Business Student who is seeking job opportunities.</p>
 
             <div style={{display:"flex", gap:12, margin:"12px 0 12px", justifyContent:"center" }}>
-              <motion.a whileTap={{ scale: 0.95 }} className="btn" href="#" onClick={(e)=>e.preventDefault()}>Download my CV</motion.a>
+              <motion.a whileTap={{ scale: 0.95 }} className="btn" href="/my resume.pdf" download="Khin_Thiri_Myat_Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer">Download my CV</motion.a>
               <motion.a whileTap={{ scale: 0.95 }} className="btn btn--ghost" href="#contact">Contact me</motion.a>
             </div>
 

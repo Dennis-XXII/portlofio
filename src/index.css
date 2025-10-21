@@ -37,7 +37,7 @@ body{
   max-width:var(--max-w);
   padding:20px;
   margin-inline: auto;
-  margin-top:none;
+  margin-top:0;
   align-self:center;
   align-items:center;
 }
@@ -172,9 +172,10 @@ body{
   display: inline-grid;
   place-items: center;
   position: relative;
-  background: #e2d8cf;
+  background: none;
   transition: transform 0.3s ease;
   cursor: pointer;
+  filter: brightness(1) !important;
 }
 
 /* subtle depth illusion using perspective */
@@ -196,6 +197,14 @@ body{
 .circle-img:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (hover: none) {
+  .circle-img:hover,
+  .circle-img:hover img {
+    transform: none !important;
+    filter: brightness(1) !important;
+  }
 }
 
 /* ----------------------------------------------------------

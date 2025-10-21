@@ -6,7 +6,7 @@ export const experiences = [
   {
     image: "/experience1.png",
     title: "SKYRISE CORNER EDUCATION AGENCY",
-    role: "Education Consultant",
+    role: "Education Consultant / Co-founder",
     years: "2023 – Active",
     imgAlt: "Experience 1 image",
     description:
@@ -20,6 +20,33 @@ export const experiences = [
     imgAlt: "Experience 2 image",
     description:
       "As a part-time English tutor, I designed and delivered engaging lessons to help junior grade school students improve their English language skills, focusing on conversational practice, grammar, and vocabulary building.",
+  },
+  {
+    image: "/experience3.jpg",
+    title: "RIC Music Club",
+    role: "Financial Officer",
+    years: "2023 – 2025",
+    imgAlt: "Experience 3 image",
+    description:
+      "Managed club finances, including budgeting and expense tracking, maintaining 100% financial accuracy. Prepared financial reports for executive committee review and secured funding for club activities.",
+  },
+  {
+    image: "/experience4.jpg",
+    title: "RIC Culture Club",
+    role: "President of Internal Affairs",
+    years: "2024 – 2025",
+    imgAlt: "Experience 4 image",
+    description:
+      "Led internal operations for a 50+ member student club, ensuring smooth coordination between executive teams and members. Designed and implemented operational plans that increased event participation by 25%.",
+  },
+  {
+    image: "/experience5.jpg",
+    title: "Rangsit University International College",
+    role: "Head Team Leader",
+    years: "2023 – Current",
+    imgAlt: "Experience 5 image",
+    description:
+      "Supervised and mentored 10+ Thai and international students in English-speaking programs. Created interactive English-speaking teaching slides, improving participation rates by 25%. Coordinated schedules and delegated tasks, ensuring 100% timely completion of program activities.",
   },
 ];
 
