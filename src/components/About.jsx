@@ -1,12 +1,15 @@
 import AnimatedSection from "./AnimatedSection";
-import { skills, languages, education, achievements} from "../data";
+import { skills, languages, education, achievements, certifications} from "../data";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { hobbies } from "../data.js";
 
 export default function About({ setActive }) {
-  const { ref, inView } = useInView({ threshold: 0.35 });
+  //start and end refs for inView detection
+  const { ref: startRef, inView: startInView } = useInView({ threshold: 0.3 });
+  const { ref: endRef, inView: endInView } = useInView({ threshold: 0.3 });
+
   const [hoveredCaption, setHoveredCaption] = useState("");
 
   const trackRef = useRef(null);
@@ -19,15 +22,16 @@ export default function About({ setActive }) {
   };
 
   useEffect(() => {
-    if (inView) setActive("about");
-  }, [inView, setActive]);
+    if (startInView) setActive("about");
+    if (endInView) setActive("about"); // switch to next section when bottom enters
+  }, [startInView, endInView, setActive]); 
 
 
   return (
     <section id="about"  className="section">
       <div className="container">
         {/* subtle heading */}
-        <h2 className="h2" ref={ref} style={{ marginBottom: 24 }}>About</h2>
+        <h2 className="h2" ref={startRef} style={{ marginBottom: 24 }}>About</h2>
 
         {/* Education */}
         <h3 className="h3">Education</h3>
@@ -36,7 +40,7 @@ export default function About({ setActive }) {
           <div className="kv">
             <div>
             <p className="headerP">{edu.degree} – {edu.institution}</p>
-            <p >Remark: {edu.remarks}</p>
+            <p style={{maxWidth: "900px"}} >Remark: {edu.remarks}</p>
           </div>
           <div>{edu.years}</div>
           </div>
@@ -49,10 +53,24 @@ export default function About({ setActive }) {
         <AnimatedSection key={i} delay={i*0.08}>
           <div className="kv">
             <div>
-            <p className="headerP">{ach.title}</p>
-            <p >{ach.description}</p>
+            <p className="headerP">{ach.title} - {ach.provider}</p>
+            <p style={{maxWidth: "900px"}}>{ach.description}</p>
           </div>
           <div>{ach.year}</div>
+          </div>
+        </AnimatedSection>
+        ))}
+
+        {/* Certifications */}
+        <h3 className="h3" style={{marginTop:"100px"}}>Certifications</h3>
+        {certifications.map((cert, i) => (
+        <AnimatedSection key={i} delay={i*0.08}>
+          <div className="kv">
+            <div>
+            <p className="headerP">{cert.title} - {cert.provider}</p>
+            <p style={{maxWidth: "900px"}}>{cert.description}</p>
+          </div>
+          <div>{cert.year}</div>
           </div>
         </AnimatedSection>
         ))}
@@ -72,6 +90,7 @@ export default function About({ setActive }) {
               {languages.map((l, i) => <li key={i}>{l}</li>)}
             </ul>
           </AnimatedSection>
+
         </div>
 
 <AnimatedSection delay={0.12}>
@@ -104,7 +123,8 @@ export default function About({ setActive }) {
     </div>
   </div>
 </AnimatedSection>
-      </div>
+<div ref={endRef}/>
+      </div >
     </section>
   );
 }
