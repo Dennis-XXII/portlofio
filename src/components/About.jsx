@@ -5,11 +5,12 @@ import {
 	education,
 	achievements,
 	certifications,
+	hobbies,
 } from "../data";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { hobbies } from "../data.js";
+import StorytellingCard from "../bits/StoryCard.jsx";
 
 export default function About({ setActive }) {
 	//start and end refs for inView detection
@@ -38,9 +39,13 @@ export default function About({ setActive }) {
 		<section id="about" className="section">
 			<div className="container">
 				{/* subtle heading */}
-				<h2 className="h2" ref={startRef} style={{ marginBottom: 24 }}>
-					About
-				</h2>
+				<StorytellingCard
+					title="About me"
+					subtitle="& my background"
+					align="left"
+					theme="dark"
+				/>
+				<p ref={startRef} />
 
 				{/* Education */}
 				<h3 className="h3">Education</h3>
@@ -117,7 +122,7 @@ export default function About({ setActive }) {
 
 				<AnimatedSection delay={0.12}>
 					<h3 className="h3" style={{ marginTop: 100 }}>
-						Hobbies
+						Hobbies & Social Movements
 					</h3>
 
 					<div
@@ -165,7 +170,7 @@ export default function About({ setActive }) {
 						</div>
 					</div>
 				</AnimatedSection>
-				<div ref={endRef} />
+				<p ref={endRef} />
 			</div>
 		</section>
 	);

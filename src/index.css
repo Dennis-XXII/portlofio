@@ -274,10 +274,8 @@ body {
 	display: inline-grid;
 	place-items: center;
 	position: relative;
-	background: none;
 	transition: transform 0.3s ease;
 	cursor: pointer;
-	filter: brightness(1) !important;
 }
 
 /* subtle depth illusion using perspective */
