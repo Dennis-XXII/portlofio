@@ -2,35 +2,58 @@ import AnimatedSection from "./AnimatedSection";
 import { experiences } from "../data";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import StorytellingCard from "../bits/StoryCard.jsx";
 
 export default function Experience({ setActive }) {
-  const { ref, inView } = useInView({ threshold: 0.5 });
+	const { ref: startRef, inView: startInView } = useInView({
+		threshold: 0.3,
+	});
+	const { ref: endRef, inView: endInView } = useInView({ threshold: 0.3 });
 
-  useEffect(() => { if (inView) setActive("experience"); }, [inView, setActive]);
+	useEffect(() => {
+		if (startInView) setActive("experience");
+		if (endInView) setActive("experience"); // switch to next section when bottom enters
+	}, [startInView, endInView, setActive]);
 
-  return (
-    <section id="experience" className="section">
-      <div className="container">
-        <h2 className="h2"  ref={ref} >Experiences</h2>
+	return (
+		<section id="experience" className="section">
+			<div className="container">
+				<StorytellingCard
+					title="Professional Experiences"
+					subtitle="& My Journey So Far"
+					align="left"
+					theme="dark"
+				/>
+				<p ref={startRef}></p>
 
-        <div className="stack-gap">
-          {experiences.map((exp, i) => (
-            <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="media">
-                <img src={exp.image} alt={exp.imgAlt} className="square" />
-                <div>
-                <div className="kv" style={{borderBottom:"none"}}>
-                  <h3 className="h3">{exp.role} </h3>
-                  <div style={{textAlign:"left", color:"var(--ink-2)"}}>{exp.years}</div>
-                </div>
-                <span style={{fontWeight:400, color:"var(--ink-2)"}}>({exp.title})</span>
-                  <p style={{marginTop:10}}>{exp.description}</p>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+				<div className="stack-gap">
+					{experiences.map((exp, i) => (
+						<AnimatedSection key={i} delay={i * 0.08}>
+							<div className="experience-card">
+								<div className="experience-image-wrapper">
+									<img
+										src={exp.image}
+										alt={exp.imgAlt}
+										className="experience-img"
+									/>
+									<div className="experience-overlay"></div>
+								</div>
+								<div className="experience-content">
+									<div className="experience-header">
+										<div>
+											<h3 className="h3">{exp.role}</h3>
+											<span className="experience-title">{exp.title}</span>
+										</div>
+										<span className="experience-years">{exp.years}</span>
+									</div>
+									<p className="experience-description">{exp.description}</p>
+								</div>
+							</div>
+						</AnimatedSection>
+					))}
+				</div>
+				<p ref={endRef}></p>
+			</div>
+		</section>
+	);
 }
