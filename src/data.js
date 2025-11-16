@@ -67,7 +67,7 @@ export const projects = [
 		brief: "SEASAC B2B Sales Competition",
 		description:
 			"Achieved second runner-up position in the SEASAC B2B Sales Competition 2025 by developing and presenting innovative business solutions. Demonstrated strong sales strategies and negotiation skills throughout the competition.",
-		imgAlt: "Project 1 image",
+		imgAlt: "SEASAC image",
 	},
 	{
 		image: "/TNSC.jpeg",
@@ -76,16 +76,16 @@ export const projects = [
 		brief: "TNSC Thailand Negotiation and Sales Competition",
 		description:
 			"Achieved semi-finalist position in the TNSC Thailand Negotiation and Sales Competition 2025 by showcasing exceptional negotiation skills and strategic thinking.",
-		imgAlt: "Project 2 image",
+		imgAlt: "TNSC image",
 	},
 	{
-		image: "/research.jpg",
+		image: "/research.jpeg",
 		title: "Research Paper",
 		year: "2025",
 		brief: "Rangsit University International College",
 		description:
 			'"The role of Machine Learning in Personalizing Media Streaming Platforms: Insights from Rangsit University Students." Conducted a comprehensive study on how machine learning algorithms enhance user experience by personalizing content recommendations on media streaming platforms and presenting findings at the RSU Research Conference 2025.',
-		imgAlt: "Project 3 image",
+		imgAlt: "Research image",
 	},
 	{
 		image: "/CSR.jpg",
@@ -94,7 +94,16 @@ export const projects = [
 		brief: "Rangsit University International College",
 		description:
 			"Went on multiple CSR field trips to rural areas in Thailand, organizing educational workshops and community development projects to support underprivileged communities.",
-		imgAlt: "Project 2 image",
+		imgAlt: "CSR image",
+	},
+	{
+		image: "/cultureClub.jpg",
+		title: "Student-led Events and Management",
+		year: "2024-2025",
+		brief: "RIC Culture Club",
+		description:
+			"Organized and managed various cultural events and activities as the President of Internal Affairs for the RIC Culture Club, fostering cross-cultural understanding and engagement among students.",
+		imgAlt: "Culture Club image",
 	},
 ];
 
@@ -179,12 +188,12 @@ export const certifications = [
 
 export const hobbies = [
 	{
-		img: "/hobby1.jpg",
+		img: "/tbronze.jpg",
 		caption: "Table Tennis",
-		desc: "I got bronze in Rangsit University Payom Games 2023.",
+		desc: "I got bronze in Rangsit University Payom Games 2024.",
 	},
 	{
-		img: "/hobby2.jpeg",
+		img: "/tgold.jpeg",
 		caption: "Table Tennis",
 		desc: "In the following year, 2025. I got Gold.",
 	},

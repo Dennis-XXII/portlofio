@@ -89,8 +89,8 @@ export default function Home({ setActive }) {
 							<motion.a
 								whileTap={{ scale: 0.95 }}
 								className="btn"
-								href="/my resume.pdf"
-								download="Khin_Thiri_Myat_Resume.pdf"
+								href="/Khin Thiri Myat Resume.pdf"
+								download="Khin Thiri Myat.pdf"
 								target="_blank"
 								rel="noopener noreferrer">
 								Download my CV

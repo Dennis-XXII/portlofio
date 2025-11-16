@@ -393,31 +393,58 @@ body {
 }
 
 /* ----------------------------------------------------------
-   🌀 Infinite Image Carousel
+   🌀 Infinite Image Carousel - Modern Edition
 -----------------------------------------------------------*/
-/* outer lets vertical overflow show */
+
+/* Outer container - allows vertical overflow for hover effects */
 .carousel-outer {
 	position: relative;
 	width: 100%;
-	overflow: visible; /* allow hover scale/shadow to escape vertically */
-	margin-top: 24px;
+	overflow: visible;
+	margin-top: clamp(16px, 3vw, 24px);
 }
 
-/* inner clips horizontally only (we’ll add vertical padding so lifts aren't cut) */
+/* Viewport - clips horizontal overflow only */
 .carousel-viewport {
-	overflow: hidden; /* clips left/right overflow */
+	overflow-x: auto;
+	overflow-y: visible;
 	width: 100%;
-	padding-block: 20px; /* room for hover lift/shadow */
+	padding-block: clamp(16px, 2.5vw, 20px);
+	scrollbar-width: thin;
+	scrollbar-color: var(--brand) var(--button-bg);
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+}
+
+.carousel-viewport::-webkit-scrollbar {
+	height: 8px;
+}
+
+.carousel-viewport::-webkit-scrollbar-track {
+	background: var(--button-bg);
+	border-radius: 4px;
+}
+
+.carousel-viewport::-webkit-scrollbar-thumb {
+	background: var(--brand);
+	border-radius: 4px;
+}
+
+.carousel-viewport::-webkit-scrollbar-thumb:hover {
+	background: var(--brand);
+	opacity: 0.8;
 }
 
 .carousel-viewport:hover .carousel-track {
 	animation-play-state: paused;
 }
 
+/* Track - infinite scroll container */
 .carousel-track {
 	display: flex;
-	gap: 8px;
-	animation: scrollInfinite 20s linear infinite;
+	gap: clamp(6px, 1vw, 12px);
+	animation: scrollInfinite 25s linear infinite;
+	will-change: transform;
 }
 
 @keyframes scrollInfinite {
@@ -429,59 +456,81 @@ body {
 	}
 }
 
+/* Individual carousel items */
 .carousel-item {
 	flex: 0 0 auto;
-	width: 220px;
+	width: clamp(110px, 20vw, 220px);
 	text-align: center;
 	cursor: pointer;
-	transition: transform 0.3s ease;
+	transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	position: relative;
 }
 
+/* Image styling with dolly zoom effect */
 .carousel-img {
 	width: 100%;
 	aspect-ratio: 1/1;
 	object-fit: cover;
-	box-shadow: var(--shadow-md);
-	transition: transform 0.4s ease, filter 0.4s ease;
+	border-radius: 2px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+	transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	overflow: hidden;
 }
 
-.carousel-item:hover .carousel-img .carousel-caption {
-	filter: brightness(1.005);
-	scale: 1.1;
+/* Dolly zoom effect - image moves forward while container moves back */
+.carousel-item:hover {
+	transform: translateY(-12px) scale(0.95);
 }
 
+.carousel-item:hover .carousel-img {
+	box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.15);
+	filter: brightness(1.08) contrast(1.05);
+	transform: scale(1.05);
+}
+
+/* Caption styling */
 .carousel-caption {
 	color: var(--brand);
-	margin-top: 10px;
-	font-size: 15px;
+	margin-top: clamp(8px, 1.5vw, 12px);
+	font-size: clamp(13px, 1.8vw, 15px);
 	font-weight: 500;
+	letter-spacing: 0.01em;
+	transition: all 0.3s ease;
+}
+
+.carousel-item:hover .carousel-caption {
+	color: var(--brand);
+	font-weight: 600;
+	transform: translateY(2px);
 }
 
 /* Description bar */
 .carousel-description-bar {
-	height: 40px;
-	margin-top: 16px;
+	min-height: 40px;
+	margin-top: clamp(12px, 2vw, 16px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 8px 16px;
-	transition: all 0.3s ease;
-	min-height: 40px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-description-bar p {
-	font-size: 18px;
+	font-size: clamp(16px, 2.2vw, 18px);
 	font-weight: 600;
 	color: var(--brand);
 	text-align: center;
 	margin: 0;
-	animation: fadeInDesc 0.3s ease;
+	line-height: 1.4;
+	animation: fadeInDesc 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeInDesc {
 	from {
 		opacity: 0;
-		transform: translateY(5px);
+		transform: translateY(8px);
 	}
 	to {
 		opacity: 1;
@@ -489,21 +538,58 @@ body {
 	}
 }
 
-/* Utility class to pause carousel animation */
+/* Utility class to pause carousel */
 .carousel-track.is-paused {
 	animation-play-state: paused;
 }
 
-/* Mobile tweaks */
+/* Responsive breakpoints */
 @media (max-width: 768px) {
-	.carousel-item {
-		width: 140px;
+	.carousel-track {
+		animation-duration: 20s;
+	}
+
+	.carousel-img {
+		border-radius: 1px;
+	}
+
+	.carousel-item:hover {
+		transform: translateY(-10px) scale(0.96);
+	}
+
+	.carousel-item:hover .carousel-img {
+		transform: scale(1.12);
 	}
 }
 
 @media (max-width: 480px) {
-	.carousel-item {
-		width: 110px;
+	.carousel-img {
+		border-radius: 0;
+	}
+
+	.carousel-item:hover {
+		transform: translateY(-8px) scale(0.97);
+	}
+
+	.carousel-item:hover .carousel-img {
+		transform: scale(1.1);
+	}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	.carousel-track {
+		animation: none;
+	}
+
+	.carousel-item,
+	.carousel-img,
+	.carousel-caption {
+		transition: none;
+	}
+
+	.carousel-description-bar p {
+		animation: none;
 	}
 }
 
