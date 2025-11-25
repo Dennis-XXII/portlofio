@@ -70,8 +70,8 @@ export const projects = [
 		imgAlt: "SEASAC image",
 	},
 	{
-		image: "/TNSC.jpeg",
-		title: "Semi-finalist",
+		image: "/TNSCWin.png",
+		title: "Semi-finalist / Best Video Award Winner",
 		year: "2025",
 		brief: "TNSC Thailand Negotiation and Sales Competition",
 		description:
@@ -104,6 +104,15 @@ export const projects = [
 		description:
 			"Organized and managed various cultural events and activities as the President of Internal Affairs for the RIC Culture Club, fostering cross-cultural understanding and engagement among students.",
 		imgAlt: "Culture Club image",
+	},
+	{
+		image: "/earthquake.png",
+		title: "Humanitarian Aid and Relief Efforts for Sagaing Earthquake 2025",
+		year: "Mar 2025",
+		brief: "Together with RIC Culture Club & Rangsit International College",
+		description:
+			"Led a successful fundraising campaign to provide humanitarian aid and relief to the victims of the Sagaing Earthquake in Myanmar. Collaborated with RIC Culture Club and Rangsit International College to collect donations, organize relief supplies, and coordinate with local NGOs for effective distribution.",
+		imgAlt: "Earthquake Relief image",
 	},
 ];
 
@@ -141,8 +150,16 @@ export const education = [
 
 export const achievements = [
 	{
-		title: "Finalist - SeaSac Business Competition",
-		provider: "Rangsit University International College",
+		title: "Best Video Award / Semi-Finalist",
+		provider: "Thailand Negotiation and Sales Competition (TNSC) 2025",
+		year: "November 2025",
+		description:
+			"Received the Best Video Award at TNSC 2025 for creating an engaging and informative presentation that effectively showcased negotiation and sales strategies. Also, was the semi-finalist of the competition.",
+	},
+	{
+		title: "2nd Runner Up",
+		provider:
+			"SeaSac Business Competition at Rangsit University International College",
 		year: "November 2025",
 		description:
 			"Reached the finals of the SeaSac Business Competition 2025, showcasing innovative business solutions and strategic thinking.",
@@ -206,5 +223,10 @@ export const hobbies = [
 		img: "/teamLeader.jpg",
 		caption: "Team Leader at RSU Global English Program",
 		desc: "As a team leader, I supervised and many Thai and international students in English-speaking programs.",
+	},
+	{
+		img: "/chonsan.jpg",
+		caption: "Chonsan Drummer",
+		desc: "As a drummer of Thai Traditional Chonsan, I have performed in many events and ceremonies.",
 	},
 ];
