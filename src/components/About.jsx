@@ -6,6 +6,7 @@ import {
 	achievements,
 	certifications,
 	hobbies,
+	certificates,
 } from "../data";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState, useRef } from "react";
@@ -170,6 +171,28 @@ export default function About({ setActive }) {
 						</div>
 					</div>
 				</AnimatedSection>
+				{/* Certificate Collage */}
+				<AnimatedSection delay={0.1}>
+					<h3 className="h3" style={{ marginTop: 100 }}>
+						Certificates
+					</h3>
+					<div className="cert-collage">
+						{certificates.map((cert, i) => (
+							<motion.div
+								key={i}
+								className="cert-card"
+								whileHover={{ y: -4 }}
+								transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+								<img src={cert.img} alt={cert.title} />
+								<div className="cert-overlay">
+									<h4 className="cert-overlay__title">{cert.title}</h4>
+									{cert.desc && <p className="cert-overlay__desc">{cert.desc}</p>}
+								</div>
+							</motion.div>
+						))}
+					</div>
+				</AnimatedSection>
+
 				<p ref={endRef} />
 			</div>
 		</section>
