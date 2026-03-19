@@ -230,3 +230,15 @@ export const hobbies = [
 		desc: "As a drummer of Thai Traditional Chonsan, I have performed in many events and ceremonies.",
 	},
 ];
+
+// Fill in your certificate data below.
+// img: path relative to /public (e.g. "/certificates/csr.jpg")
+// title: displayed on hover
+// desc: (optional) short description shown below title on hover
+export const certificates = [
+	{ img: "/certificates/csr.jpg",            title: "CSR Certificate", desc: "" },
+	{ img: "/certificates/cultureclub.jpg",     title: "Culture Club",    desc: "" },
+	{ img: "/certificates/language center.jpg", title: "Language Center", desc: "" },
+	{ img: "/certificates/rsubuddy.jpg",        title: "RSU Buddy",       desc: "" },
+	{ img: "/certificates/yasa.jpg",            title: "YASA",            desc: "" },
+];
