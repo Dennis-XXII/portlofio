@@ -150,6 +150,13 @@ export const education = [
 
 export const achievements = [
   {
+    title: "Dean's List Award",
+    provider: "Rangsit University International College",
+    year: "2026",
+    description:
+      "Received the Dean's List Award for academic excellence and outstanding performance in studies at Rangsit University International College.",
+  },
+  {
     title: "Best Video Award / Semi-Finalist",
     provider: "Thailand Negotiation and Sales Competition (TNSC) 2025",
     year: "November 2025",
@@ -229,6 +236,11 @@ export const hobbies = [
     caption: "Chonsan Drummer",
     desc: "As a drummer of Thai Traditional Chonsan, I have performed in many events and ceremonies.",
   },
+  {
+    img: "/deans.jpg",
+    caption: "Dean's List Award 2026",
+    desc: "I received the Dean's List Award for my academic excellence and outstanding performance in my studies.",
+  },
 ];
 
 // Fill in your certificate data below.
@@ -245,4 +257,5 @@ export const certificates = [
   },
   { img: "/certificates/yasa.jpg", title: "YASA", desc: "" },
   { img: "/certificates/rsubuddy.jpg", title: "RSU Buddy", desc: "" },
+  { img: "/certificates/deans.jpg", title: "Dean's List Award", desc: "" },
 ];
